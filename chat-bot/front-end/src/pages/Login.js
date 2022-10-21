@@ -1,18 +1,18 @@
 import { Form, FormGroup, FormControl, Button } from 'react-bootstrap';
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
 import React, {useState} from 'react';
 import "./login.css"
 
 
-class Login extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			email: '',
-			password: '',
-		};
-	}
-}
+// class Login extends Component {
+// 	constructor(props) {
+// 		super(props);
+// 		this.state = {
+// 			email: '',
+// 			password: '',
+// 		};
+// 	}
+// }
 
 const Login = () => {
     
