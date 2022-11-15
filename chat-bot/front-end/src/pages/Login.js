@@ -16,6 +16,7 @@ import "./login.css"
 
 const Login = (props) => {
     const [popupStyle, showPopup] = useState("hide");
+    const [guestStyle, showGuestPopup] = useState("hide"); /* for testing purposes, you would replace this with a redirct to the chatbot  */
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState('');
     
@@ -24,6 +25,12 @@ const Login = (props) => {
         showPopup("login-popup");
         setTimeout(() => showPopup("hide"), 3000);
     }
+
+    const guest = () => {
+        showGuestPopup("guest-popup");
+        setTimeout(() => showGuestPopup("hide"), 3000);
+    }
+
 
     /*Code added 10/29/2022*/
     const changeEmail = (event) => {
@@ -36,23 +43,32 @@ const Login = (props) => {
         console.log(event.target.value);
         setPassword(event.target.value);
     }
+
     return (
         <div className="background">
         <div className="cover">
             <h1>Login</h1>
-            <label htmlFor="Email">Email:</label>
+
+
+            <div className={popupStyle}>
+            <h3>Login Failed: Username or password incorrect</h3>
+            </div>
+
+            <div className={guestStyle}>
+            <h3>You are a Guest! Redirecting to main page...</h3>
+            </div>
+
+            <div htmlFor="Email">Email:</div>
             <input type="text" placeholder="Email" onChange={(event)=>setEmail(event.target.value)} required/>
             
             <label htmlFor="password">Password:</label>
             <input type="password" placeholder="Password" onChange={(event)=> setPassword(event.target.value)} reuired/>
             
             <div className="login-btn" onClick={popup}>Login</div>
+            <div className="guest-btn" onClick={guest}>Continue As Guest </div>
             
             
-            <div className={popupStyle}>
-            <h3>Login Failed</h3>
-            <p>Username or password incorrect</p>
-            </div>
+
             
     
         </div>

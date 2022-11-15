@@ -4,7 +4,8 @@
 	font-family: sans-serif;
 }
 
-.background{
+
+.background {
 	height: 100%;
 	width: 100%;
 	background-image: url(background.jpeg);
@@ -22,8 +23,8 @@
 }
 
 .cover {
-	width: 30em;
-	height: 35em;
+	width: 25em;
+	height: 25em;
 	position: relative;
 	margin: 6% auto;
 	background: #fff;
@@ -32,8 +33,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: space-around;
-	
+	justify-content: space-evenly; 
 }
 
 input{
@@ -42,7 +42,7 @@ input{
 	height: 4em;
 	width: 80%;
 	border-radius: 0.25em;
-	text-align: center;
+	text-align: left;
 	padding: 2em;
 }
 
@@ -58,12 +58,27 @@ input:focus {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	transition: 0.5s;
+	transition: 0.25s;
 	border-radius: 0.25em;
 	cursor: pointer;
 }
 
-.login-btn:hover {transform: scale(1.25);}
+.guest-btn {
+	width: 40%;
+	height: 3em;
+	color: white;
+	background-color: #A020F0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: 0.25s;
+	border-radius: 0.25em;
+	cursor: pointer;
+}
+
+.login-btn:hover, .guest-btn:hover {
+	transform: scale(1.10);
+}
 
 .text{
 	position: relative;
@@ -77,16 +92,32 @@ input:focus {
 
 .login-popup {
 	position: relative;
-	height: 200px;
-	width: 200px;
-	display: flex;
+	height: 10px;
+	width: 400px;
+	display: absolute;
 	flex-direction: column;
-	align-items: center;
+	align-items: left;
 	justify-content: center;
-	border-radius: 0.25em;
 	background-color: white;
 	color: red;
 	bottom: 0;
-	transform: scale(1);
+	transform: scale(0.9);
 	transform: 0.1s;
+	font-size: small;
+}
+
+.guest-popup {
+	position: relative;
+	height: 10px;
+	width: 400px;
+	display: absolute;
+	flex-direction: column;
+	align-items: left;
+	justify-content: center;
+	background-color: white;
+	color: rgb(85, 255, 0);
+	bottom: 0;
+	transform: scale(0.9);
+	transform: 0.1s;
+	font-size: small;
 }
