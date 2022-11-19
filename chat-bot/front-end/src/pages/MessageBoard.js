@@ -62,7 +62,7 @@ function MessageBoard() {
     "Friday",
     "Saturday",
   ];
-  
+
   const months = [
     "January",
     "February",
@@ -88,6 +88,7 @@ function MessageBoard() {
       //if the dateTime is Thursday, 13 Aug 2022, the bot will be inactive
       isActive = false;
     }
+    
     const status = document.querySelector(".status");
     // selecting the status class
     if (isActive === true) {
@@ -322,8 +323,12 @@ function MessageBoard() {
               </div>
               <div className="btn">
                 <button onClick={handleInput}>
-                  <i className="fas fa-paper-plane"></i>Send
+                  Send
                 </button>
+              </div>
+              <div className="btn2">
+                <button onClick={handleInput}>
+                  Log Out</button>
               </div>
             </div>
           </div>
@@ -335,6 +340,3 @@ function MessageBoard() {
 
 export default MessageBoard;
   
-
-
-export default MessageBoard;
