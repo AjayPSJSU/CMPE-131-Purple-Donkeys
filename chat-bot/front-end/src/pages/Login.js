@@ -2,6 +2,7 @@ import { Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 // import React, { Component } from 'react';
 import React, {useState} from 'react';
 import "./login.css"
+import axios from 'axios';
 
 
 // class Login extends Component {
@@ -29,6 +30,24 @@ const Login = (props) => {
     const guest = () => {
         showGuestPopup("guest-popup");
         setTimeout(() => showGuestPopup("hide"), 3000);
+    }
+
+    async function signUp() {
+        console.log("signup");
+        const x = await axios.post('http://localhost:5000/api/handleSignUp');
+        console.log(x.data);
+    }
+
+    async function login() {
+        console.log("login");
+        const body = {
+            "email": email,
+            "password": password
+        }
+        console.log(body);
+        const x = await axios.post('http://localhost:5000/api/handleLogin/', {}, {params: {email, password}});
+        console.log(x.data);
+        props.setLoginStatus(x.data); 
     }
 
 
@@ -62,10 +81,11 @@ const Login = (props) => {
             <input type="text" placeholder="Email" onChange={(event)=>setEmail(event.target.value)} required/>
             
             <label htmlFor="password">Password:</label>
-            <input type="password" placeholder="Password" onChange={(event)=> setPassword(event.target.value)} reuired/>
+            <input type="password" placeholder="Password" onChange={(event)=> setPassword(event.target.value)} required/>
             
-            <div className="login-btn" onClick={popup}>Login</div>
+            <div className="login-btn" onClick={login}>Login</div>
             <div className="guest-btn" onClick={guest}>Continue As Guest </div>
+            <div className="guest-btn" onClick={signUp}>Sign Up</div>
             
             
 
