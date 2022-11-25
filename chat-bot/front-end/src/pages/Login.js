@@ -32,10 +32,9 @@ const Login = (props) => {
         setTimeout(() => showGuestPopup("hide"), 3000);
     }
 
-    async function signUp() {
-        console.log("signup");
-        const x = await axios.post('http://localhost:5000/api/handleSignUp');
-        console.log(x.data);
+    function signUp() {
+        
+       props.setLoginStatus("SignUp");
     }
 
     async function login() {

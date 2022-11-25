@@ -24,6 +24,15 @@ Database will have 2 collections
 -Messages will have DocumentID that will be the users DocumentID in the Users Collection
 -Messages will store the last say 100 messages given to and from the user
 
+
+
+
+for the bot
+certain keywords, such as "or", will dictate a response such as "hmm idk"
+"favorite" - depending on what is after, like food or sport, dictate certain outcomes
+
+otherwise, run it through the fuzzy search, set the search key as the type of message it is, and then return the value
+hashmap<type of message, response>
 */
 
 app.use(cors({
@@ -49,9 +58,9 @@ app.get('/api/getMessages', (req, res) => {
     res.json(message);
 });
 
-app.get('/api/getMessageHistory', urlencodedParser,(req, res) => {
+app.get('/api/getMessageHistory', urlencodedParser, async (req, res) => {
     let messageHistory = await client.db("ChatBot").collection(UserMessageHistory).findOne({"_id": req.uid});
-    res.json(message);
+    res.json(messageHistory);
 });
 
 app.post(`/api/handleLogin`, urlencodedParser, async (req, res) => {
@@ -71,12 +80,11 @@ app.post(`/api/handleLogin`, urlencodedParser, async (req, res) => {
     res.json(user._id);
 });
 
-app.post(`/api/handleSignUp`, async (req, res) => {
-    //await client.connect();   //move later to global state
-    const password = hash("kumhard");  //req.body.password
+app.post(`/api/handleSignUp`, urlencodedParser,async (req, res) => {
+    const password = hash(req.query.password);  
     console.log("password: " + password);
     const newUser = {
-        email: "sirella@gmail.com",    //req.body.username
+        email: req.query.email,    
         password: password
     }
     const newId = await client.db("ChatBot").collection("users").insertOne(newUser);
