@@ -14,6 +14,9 @@ function App() {
   if (loginStatus == "SignUp") {
     render = <SignUp setLoginStatus = {setLoginStatus}p/>
   }
+  else if (loginStatus == "guest") {
+    render = <MessageBoard/>
+  }
   else if (loginStatus) {
     render = <MessageBoard uid = {loginStatus}/>   //set parameters with uid, since another document will be made in the messages collection with the same id
   }

@@ -28,6 +28,7 @@ const Login = (props) => {
     }
 
     const guest = () => {
+        props.setLoginStatus("guest"); 
         showGuestPopup("guest-popup");
         setTimeout(() => showGuestPopup("hide"), 3000);
     }
