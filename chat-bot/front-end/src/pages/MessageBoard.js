@@ -3,63 +3,16 @@ import "./login.css"
 import "./MessageBoard.css";
 import image from "./img/bot_image.jpg";
 import { useState, useRef } from 'react';
+import axios from 'axios';
 
-
-//make something that can take input and make state variable to store it
-/*
-const MessageBoard = ( props ) => {
-    const [messages, setMessages] = useState([]);
-    const [message, setMessage] = useState("");
-    //props.uid
-    
-
-    
-    useEffect(() => {
-        async function fetchData() {
-            var res = await fetch('http://localhost:5000/api/getMessages');
-            res = await res.json();
-            setMessages(res);
-        }
-        fetchData();
-        //console.log(messages);
-    }, []);
-    
-
-    async function getMessageHistory() {
-        
-    }
-    
-    async function sendMessage() {
-        
-    }
-
-    
-    return (
-        <h3>
-            {console.log("render")}
-            <p>yo </p>
-            <ul>
-                {
-                messages.map((message) => <li key={message.key}>{message.message}</li>)
-                }
-            </ul>
-
-            
-            <input placeholder="type message" onChange={async (event)=> await setMessage(event.target.value)} required/>
-            <div className="login-btn" onClick={sendMessage}>send</div>
-            
-                
-//         </h3>
-    )
-// }
-*/
 
 
 // new MessageBoard
 function MessageBoard() {
-    const humanMessage = useRef();
-    const botmessage = useRef();
-    const input = useRef();
+    const [humanMessage, setHumanMessage] = useState("");
+    const [humanMessageDisplay, setHumanMessageDisplay] = useState("");
+    const [botMessage, setBotMessage] = useState("penis");
+   // const input = useRef();
 
     const date = new Date();
     const hours = date.getHours();
@@ -116,7 +69,77 @@ function MessageBoard() {
         }
     };
 
-    // Chatbot and user conversation response
+    async function getBotResponse() {
+        setBotMessage("...");
+        setHumanMessageDisplay(humanMessage);
+        const x = await axios.post('http://localhost:5000/api/getBotResponse', {}, {params: {message: humanMessage}});
+        setBotMessage(x.data);
+    }
+
+    async function handleKeyDown(e) {
+        if (e.key === 'Enter') {
+            await getBotResponse();
+            console.log("pressed");
+        }
+    }
+
+   
+
+    return (
+        <div className="messageBoard" onLoad={checkStatus}>
+            <div className="wrapper">
+                <div className="content">
+                    <div className="header">
+                        <div className="img">
+                            <img src={image} alt="" />
+                        </div>
+                        <div className="right">
+                            <div className="name">Purple Donkey</div>
+                            <div className="status">Active</div>
+                        </div>
+                    </div>
+                    <div className="main">
+                        <div className="main_content">
+                            <div className="messages">
+                                <div className = "bot-message">
+                                    <p>{botMessage}</p>
+                                </div>
+                                <div className="human-message">
+                                    <p>{humanMessageDisplay}</p>                               
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="bottom">
+                        <div className="btm">
+                            
+                            <div className="input">
+                            <input type="text" placeholder="Enter Message" onChange={async (event)=>setHumanMessage(event.target.value)} onKeyDown={ async (event) => await handleKeyDown(event)} required/>
+                            </div>
+                            
+                            <div className="btn">
+                                <button onClick={async () => await getBotResponse()}>
+                                    Send
+                                </button>
+                            </div>
+                            <div className="btn2">
+                                <button onClick={getBotResponse}>
+                                    Log Out</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default MessageBoard;
+
+
+
+ // Chatbot and user conversation response
+    /*
     const handleInput = () => {
         const botMessage = document.querySelector("#message1");
         const userMessage = document.querySelector("#message2");
@@ -277,10 +300,6 @@ function MessageBoard() {
             }, 2000);
         }
 
-        
-
-
-
         let owner = [
             "Who is the owner|who is the owner|Who is the owner of this bot|who is the owner of this bot|Who made you|who made you|Who is your maker|Who made you|who is your maker|who is your owner|Who is your owner",
         ];
@@ -320,62 +339,4 @@ function MessageBoard() {
         }
         getHumanMessage.innerText = inputRef.value; // display the message
     };
-
-    return (
-        <div className="messageBoard" onLoad={checkStatus}>
-            <div className="wrapper">
-                <div className="content">
-                    <div className="header">
-                        <div className="img">
-                            <img src={image} alt="" />
-                        </div>
-                        <div className="right">
-                            <div className="name">Purple Donkey</div>
-                            <div className="status">Active</div>
-                        </div>
-                    </div>
-                    <div className="main">
-                        <div className="main_content">
-                            <div className="messages">
-                                <div
-                                    className="bot-message"
-                                    id="message1"
-                                    ref={botmessage}
-                                ></div>
-                                <div
-                                    className="human-message"
-                                    id="message2"
-                                    ref={humanMessage}
-                                ></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="bottom">
-                        <div className="btm">
-                            <div className="input">
-                                <input
-                                    type="text"
-                                    id="input"
-                                    placeholder="Enter your message"
-                                    ref={input}
-                                />
-                            </div>
-                            <div className="btn">
-                                <button onClick={handleInput}>
-                                    Send
-                                </button>
-                            </div>
-                            <div className="btn2">
-                                <button onClick={handleInput}>
-                                    Log Out</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-}
-
-export default MessageBoard;
-
+    */

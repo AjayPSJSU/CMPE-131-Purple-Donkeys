@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const { spawn } = require('child_process');
 const bodyParser = require('body-parser');
 const { ObjectID} = require('bson');
 const { MongoClient } = require('mongodb');
@@ -56,6 +57,29 @@ app.get('/api/getMessages', (req, res) => {
         }
     ];
     res.json(message);
+});
+
+
+app.post('/api/getBotResponse', urlencodedParser,(req, res) => {
+    const childPython = spawn('python3', ['ChatBot.py', req.query.message]);
+    let response = "";
+    childPython.stdout.on('data', (data) => {
+        console.log(`stdout: ${data}`);
+        response = `${data}`;
+        //console.log(response);
+    });
+    
+    childPython.stderr.on('data', (data) => {
+        console.log(`stderr: ${data}`);
+    });
+    
+    childPython.on('close', (code) => {
+        //console.log("response is: " + response);
+        res.json(response);
+        console.log(`exit with code: ${code}`);
+    });
+    
+    return;
 });
 
 app.get('/api/getMessageHistory', urlencodedParser, async (req, res) => {

@@ -1,0 +1,56 @@
+[
+    {
+      "response_type": "greeting",
+      "user_input": ["hello", "hi", "hey"],
+      "bot_response": "Hey there!",
+      "required_words": []
+    },
+    {
+      "response_type": "insult",
+      "user_input": ["hey", "siri", "cortana", "watson"],
+      "bot_response": "wrong robot",
+      "required_words": ["siri"]
+    },
+    {
+      "response_type": "greeting",
+      "user_input": ["see you", "goodbye", "bye"],
+      "bot_response": "See you later!",
+      "required_words": []
+    },
+    {
+      "response_type": "greeting",
+      "user_input": ["nice", "to", "meet", "you"],
+      "bot_response": "The pleasure is all mine!",
+      "required_words": ["nice", "meet", "you"]
+    },
+    {
+      "response_type": "question",
+      "user_input": ["how", "are", "you"],
+      "bot_response": "I'm great! Thanks for asking.",
+      "required_words": ["how", "are", "you"]
+    },
+    {
+      "response_type": "question",
+      "user_input": ["who", "made", "you"],
+      "bot_response": "I am made by purple donkeys",
+      "required_words": ["made", "you"]
+    },
+    {
+      "response_type": "question",
+      "user_input": ["who", "are", "purple", "donkeys", "is", "in"],
+      "bot_response": "Hei, Kevin, and Ajay",
+      "required_words": ["who",  "purple", "donkeys"]
+    },
+    {
+      "response_type": "question",
+      "user_input": ["favorite", "what", "color", "is", "do", "you", "have", "a"],
+      "bot_response": "I've always been keen of purple",
+      "required_words": ["favorite",  "color"]
+    },
+    {
+      "response_type": "question",
+      "user_input": ["how", "do", "you", "work", "think", "know", "that"],
+      "bot_response": "With the power of coding",
+      "required_words": ["how",  "do", "you"]
+    }
+  ]
