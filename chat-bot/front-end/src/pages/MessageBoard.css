@@ -134,7 +134,40 @@
   margin-left: 20px;
 }
 
+
+.btn3 button{
+  width: 80px;
+  height: 25px;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  background: #479FF8;
+  color: #FFF;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.bottom .btn4 button{
+  width: 80px;
+  height: 25px;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  background: #479FF8;
+  color: #FFF;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9em;
+  margin-left: 15px;
+}
+
 /* "Send" text inside the button*/
 .wrapper .content .bottom .btm .btn button i{
   margin-left: 5px;
+}
+
+.title{
+  margin-left: -100%;
+  align-content: center;
 }
