@@ -156,6 +156,7 @@ function MessageBoard(props) {
                             </div>
                         </div>
                     </div>
+                    
                     <div className="bottom">
                         <div className="btm">
                             
@@ -172,17 +173,29 @@ function MessageBoard(props) {
                                 <button onClick={getBotResponse}>
                                     Log Out</button>
                             </div>
+                            <div className="bottom">
+                                <div className="btm">
+                                    <div className="title">
+                                        <h3>Message History</h3>
+                                    </div>
+                                    <ol>
+                                        {messageHistory.map((message, index) => (<li key={index}>{"You: " + message.human + "    Bot: " + message.bot}</li>))}
+                                </ol>
+                                <div className="btn3">
+                                    <button onClick={async () => await less()}> less </button>
+                                </div>
+        
+                                    <div className="btn4">
+                                        <button onClick={async () => await more()}> more </button>
+                                    </div>
+                                </div>   
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <div>
-                            <p>Message History</p>
-                            <ol>
-                                {messageHistory.map((message, index) => (<li key={index}>{"You: " + message.human + "    Bot: " + message.bot}</li>))}
-                            </ol>
-                            <button onClick={async () => await less()}> less </button>
-                            <button onClick={async () => await more()}> more </button>
-                        </div>
+                <div>
+                    
+                    
+                        
                     </div>
                 </div>
             </div>
