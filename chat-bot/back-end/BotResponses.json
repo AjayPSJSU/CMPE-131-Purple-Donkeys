@@ -26,7 +26,7 @@
     {
       "response_type": "question",
       "user_input": ["how", "are", "you"],
-      "bot_response": "I'm great! Thanks for asking.",
+      "bot_response": "I'm great! Thanks for asking. How are you?",
       "required_words": ["how", "are", "you"]
     },
     {
@@ -52,5 +52,18 @@
       "user_input": ["how", "do", "you", "work", "think", "know", "that"],
       "bot_response": "With the power of coding",
       "required_words": ["how",  "do", "you"]
+    },
+    {
+      "response_type": "question",
+      "user_input": ["what", "do", "you", "do", "with", "my", "data"],
+      "bot_response": "I sell it to foreign hackers...Kidding!",
+      "required_words": ["data",  "do", "with"]
+    },
+    {
+      "response_type": "question",
+      "user_input": ["what", "languages", "you", "do", "speak", "know", "data"],
+      "bot_response": "I'm only fluent in binary. My creators taught me a bit of English",
+      "required_words": ["languages",  "know"]
     }
+
   ]

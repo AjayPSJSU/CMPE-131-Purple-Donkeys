@@ -3,7 +3,7 @@ const cors = require('cors');
 const { spawn } = require('child_process');
 const bodyParser = require('body-parser');
 const { ObjectID} = require('bson');
-const { MongoClient } = require('mongodb');
+const { MongoClient, UnorderedBulkOperation } = require('mongodb');
 
 // create application/json parser
 var jsonParser = bodyParser.json()
@@ -41,22 +41,21 @@ app.use(cors({
     maxAge: 86400
 }));
 
-app.get('/api/getMessages', (req, res) => {
-    const message = [
-        {   
-            key: 1,
-            message: 'I like oragnes'    
-        },
-        {
-            key: 2,
-            message: 'I hate bananas'    
-        },
-        {
-            key: 3,
-            message: 'I am a bear'    
+//will be a page number 1-n
+app.post('/api/getMessageHistory', urlencodedParser, async(req, res) => {
+    let messageHistory = await client.db("ChatBot").collection("UserMessageHistory").findOne({"_id": new ObjectID(req.query.uid)});
+    console.log(req.query.amount);
+    let messages = messageHistory.messages;
+    let temp = [];
+    for (var i = (5*req.query.amount); i < (5*req.query.amount)+5; i++) {
+        if (messages[i] == undefined) {
+            break;
         }
-    ];
-    res.json(message);
+        temp.push(messages[i]);
+    }
+    messages = temp;
+    console.log(messages);
+    res.json(messages);
 });
 
 
@@ -73,11 +72,23 @@ app.post('/api/getBotResponse', urlencodedParser,(req, res) => {
         console.log(`stderr: ${data}`);
     });
     
-    childPython.on('close', (code) => {
+    childPython.on('close', async (code) => {
         //console.log("response is: " + response);
+        const interaction = {
+            human: req.query.message,
+            bot: response
+        }
+        console.log(interaction);
+        console.log("uid:" + req.query.uid);
+        let messageHistory = await client.db("ChatBot").collection("UserMessageHistory").updateOne(
+                                                                                                   {"_id": new ObjectID(req.query.uid)}, 
+                                                                                                   {$push: {messages: interaction}}
+                                                                                                   );
+        console.log(messageHistory.acknowledged);
         res.json(response);
         console.log(`exit with code: ${code}`);
     });
+    
     
     return;
 });
@@ -115,6 +126,7 @@ app.post(`/api/handleSignUp`, urlencodedParser,async (req, res) => {
     console.log("success making user with userID: " + newId.insertedId);
 
     var arr = [];
+    
     const newDoc = {
         _id: ObjectID(newId.insertedId),
         messages: arr

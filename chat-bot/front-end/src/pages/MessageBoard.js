@@ -4,14 +4,20 @@ import "./MessageBoard.css";
 import image from "./img/bot_image.jpg";
 import { useState, useRef } from 'react';
 import axios from 'axios';
+import MessageHistory from '../modules/MessageHistory';
 
 
 
 // new MessageBoard
-function MessageBoard() {
+function MessageBoard(props) {
     const [humanMessage, setHumanMessage] = useState("");
     const [humanMessageDisplay, setHumanMessageDisplay] = useState("");
-    const [botMessage, setBotMessage] = useState("penis");
+    const [botMessage, setBotMessage] = useState("");
+    const [messageHistoryAmount, setMessageHistoryAmount] = useState(0);
+    const [messageHistory, setMessageHistory] = useState([]);
+    const [dummy, setDummy] = useState(0);
+    
+    
    // const input = useRef();
 
     const date = new Date();
@@ -72,8 +78,26 @@ function MessageBoard() {
     async function getBotResponse() {
         setBotMessage("...");
         setHumanMessageDisplay(humanMessage);
-        const x = await axios.post('http://localhost:5000/api/getBotResponse', {}, {params: {message: humanMessage}});
+        const x = await axios.post('http://localhost:5000/api/getBotResponse', {}, {params: {message: humanMessage, uid: props.uid}});
         setBotMessage(x.data);
+    }
+
+    async function getMessageHistory() {
+        const x = await axios.post('http://localhost:5000/api/getMessageHistory', {}, {params: {amount: messageHistoryAmount, uid: props.uid}});
+        let temp = messageHistory;
+        for (var i = 0; i < x.data.length; i++) {
+            temp.push(x.data[i]);
+        }
+        await setMessageHistory(temp);
+    }
+
+    async function loseMessages() {
+        let temp = messageHistory;
+        temp.pop();
+        while (temp.length%5!=0) {
+            temp.pop();
+        }
+        await setMessageHistory(temp);
     }
 
     async function handleKeyDown(e) {
@@ -82,6 +106,28 @@ function MessageBoard() {
             console.log("pressed");
         }
     }
+
+    async function less() {
+        let temp = messageHistoryAmount-1;
+        await setMessageHistoryAmount(temp); 
+        await loseMessages();
+        temp = dummy+1;
+        setDummy(temp);
+    }
+
+    async function more() {
+        let temp = messageHistoryAmount+1
+        await setMessageHistoryAmount(temp); 
+        await getMessageHistory();
+        temp = dummy-1;
+        setDummy(temp);
+    }
+    /*
+    function formatMessageHistory(message) {
+        var out = "You: " + message.human + "\n" + "Bot: " + message.bot + "\n\n";
+        return out;
+    }
+    */
 
    
 
@@ -126,6 +172,16 @@ function MessageBoard() {
                                 <button onClick={getBotResponse}>
                                     Log Out</button>
                             </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <p>Message History</p>
+                            <ol>
+                                {messageHistory.map((message, index) => (<li key={index}>{"You: " + message.human + "    Bot: " + message.bot}</li>))}
+                            </ol>
+                            <button onClick={async () => await less()}> less </button>
+                            <button onClick={async () => await more()}> more </button>
                         </div>
                     </div>
                 </div>
