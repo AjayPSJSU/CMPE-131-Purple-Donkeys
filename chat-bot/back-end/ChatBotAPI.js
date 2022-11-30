@@ -41,7 +41,9 @@ app.use(cors({
     maxAge: 86400
 }));
 
-//will be a page number 1-n
+
+/*
+this is the actual version that works with mongodb
 app.post('/api/getMessageHistory', urlencodedParser, async(req, res) => {
     let messageHistory = await client.db("ChatBot").collection("UserMessageHistory").findOne({"_id": new ObjectID(req.query.uid)});
     console.log(req.query.amount);
@@ -54,6 +56,17 @@ app.post('/api/getMessageHistory', urlencodedParser, async(req, res) => {
         temp.push(messages[i]);
     }
     messages = temp;
+    console.log(messages);
+    res.json(messages);
+});
+*/
+
+//this is the version for css testing without mongodb
+app.post('/api/getMessageHistory', urlencodedParser, async(req, res) => {
+    messages = [];
+    for (var i = 0; i < 5; i++) {
+        messages.push("You: sample human message Bot: sample bot response");
+    }
     console.log(messages);
     res.json(messages);
 });
