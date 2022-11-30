@@ -205,25 +205,33 @@ function MessageBoard(props) {
                                     <div className="btn4">
                                         <button onClick={async () => await more()}> more </button>
                                     </div>
+                                    
+                                <div className="btm">
+                                <div className="title2">
+                                    <h3>Personality </h3>
+                                </div>
+                                    <div className="btn5">
+                                        <button onClick={async () => await getPersonality()}> show </button>
+                                    </div>
+                                    <div className="btn6">
+                                    <button onClick={async () => await setShowingPersonality(false)}> hide </button>
+                                    </div>
+                                    {
+                                            showingPersonality ? (
+                                                <div className="likes">
+                                                    <p>{likes}</p>
+                                                    <p>{dislikes}</p>
+                                                </div>
+                                            ) : (
+                                                <p></p>
+                                                ) 
+                                     }
+        
+                                </div>
+                                    
                                 </div>   
 
-                                <div>
-                                    <p>Personality</p>
-                                    <button onClick={async () => await getPersonality()}> show </button>
-                                    <button onClick={async () => await setShowingPersonality(false)}> hide </button>
-                                    
-                                    {
-                                        showingPersonality ? (
-                                            <div>
-                                                <p>{likes}</p>
-                                                <p>{dislikes}</p>
-                                            </div>
-                                        ) : (
-                                            <p></p>
-                                        )
-                                    }
-                                    
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -250,7 +258,6 @@ export default MessageBoard;
         const inputRef = input.current;
         const getHumanMessage = humanMessage.current;
         const getBotMessage = botmessage.current;
-
         let badwords = ["fuck|bad|stupid|useless|bitch|crazy|nonsense"];
         let words = new RegExp(badwords);
         if (words.test(document.querySelector("#input").value)) {
@@ -261,8 +268,6 @@ export default MessageBoard;
                 inputRef.value = ""; // clear the input
             }, 2000);
         }
-
-
         let heySiri = [
             "hey siri|Hey Siri",
         ];
@@ -275,11 +280,9 @@ export default MessageBoard;
                 console.log(getBotMessage.innerText);
             }, 2000);
         }
-
         let welcome = [
             "Hi|hi|hello|Hello|hey|sup|yo|wassup|whats up|howdy|greetings|good morning|good afternoon|good evening",
         ];
-
         let words2 = new RegExp(welcome);
         if (words2.test(document.querySelector("#input").value)) {
             const status = document.querySelector(".status");
@@ -294,11 +297,9 @@ export default MessageBoard;
                 console.log(getBotMessage.innerText);
             }, 2000);
         }
-
         let e = [
             "what are you|who are you",
         ];
-
         let ex2 = new RegExp(e);
         if (ex2.test(document.querySelector("#input").value)) {
             const status = document.querySelector(".status");
@@ -312,7 +313,6 @@ export default MessageBoard;
                 inputRef.value = ""; // clear the input
             }, 2000);
         }
-
         let bye = ["bye|Bye|goodbye|see you later|goodnight|See you later|Goodnight|Goodbye"];
         let words3 = new RegExp(bye);
         if (words3.test(document.querySelector("#input").value)) {
@@ -327,7 +327,6 @@ export default MessageBoard;
                 status.style.color = "red";
             }, 5000);
         }
-
         let thanks = [
             "Thanks|thanks|thank you|thank you very much|Thank you very much",
         ];
@@ -339,7 +338,6 @@ export default MessageBoard;
                 inputRef.value = ""; // clear the input
             }, 2000);
         }
-
         let how = [
             "How are you|how are you doing|how are you doing today|How are you doing today|How are you doing|How are you",
         ];
@@ -354,7 +352,6 @@ export default MessageBoard;
                 inputRef.value = ""; // clear the input
             }, 2000);
         }
-
         let good = [
             "That's good|Sound nice|that sounds awesome|that sounds great|Great|great|sounds great|that's sounds good|Nice|nice",
         ];
@@ -367,7 +364,6 @@ export default MessageBoard;
                 console.log("good");
             }, 1000);
         }
-
         let response = [
             "I'm fine|I am fine|I am fine today|I am fine today|i'm fine|i'm great|I'm fine|I'm great|I'm good|i'm good|great|Great",
         ];
@@ -379,7 +375,6 @@ export default MessageBoard;
                 inputRef.value = ""; // clear the input
             }, 2000);
         }
-
         let nameAsk = [
             "What's your name|what's your name|What is your name|what is your name",
         ];
@@ -391,7 +386,6 @@ export default MessageBoard;
                 inputRef.value = ""; // clear the input
             }, 2000);
         }
-
         let nameAsk2 = [
             "How should I call you?|How should I call you|how should I call you?|how should I call you",
         ];
@@ -403,7 +397,6 @@ export default MessageBoard;
                 inputRef.value = ""; // clear the input
             }, 2000);
         }
-
         let owner = [
             "Who is the owner|who is the owner|Who is the owner of this bot|who is the owner of this bot|Who made you|who made you|Who is your maker|Who made you|who is your maker|who is your owner|Who is your owner",
         ];
@@ -415,7 +408,6 @@ export default MessageBoard;
                 inputRef.value = ""; // clear the input
             }, 2000);
         }
-
         let owner2 = [
             "Who are the crews of the Purple Donkey",
         ];
@@ -428,7 +420,6 @@ export default MessageBoard;
                 inputRef.value = ""; // clear the input
             }, 2000);
         }
-
         let ageAsk = [
             "What's your age|what's your age|What is your age|what is your age|How old are you|how old are you",
         ]; //adding the age-question
