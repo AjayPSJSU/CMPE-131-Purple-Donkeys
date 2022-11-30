@@ -119,7 +119,7 @@
   font-size: 1.1em;
 }
 
-/* Log out buttn attribute*/
+/* Log out butt0n attribute*/
 .wrapper .content .bottom .btm .btn2 button{
   width: 100px;
   height: 50px;
@@ -162,6 +162,35 @@
   margin-left: 15px;
 }
 
+.btn5 button{
+  width: 80px;
+  height: 25px;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  background: #479FF8;
+  color: #FFF;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9em;
+  margin-left: 20px;
+}
+
+.btn6 button{
+  width: 80px;
+  height: 25px;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  background: #479FF8;
+  color: #FFF;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9em;
+  margin-left: 15px;
+}
+
+
 /* "Send" text inside the button*/
 .wrapper .content .bottom .btm .btn button i{
   margin-left: 5px;
@@ -169,5 +198,16 @@
 
 .title{
   margin-left: -100%;
+  align-content: center;
+}
+
+.title2{
+  margin-left: 50%;
+  align-content: center;
+}
+
+.likes{
+  position: fixed;
+  margin-left: 470px;
   align-content: center;
 }
