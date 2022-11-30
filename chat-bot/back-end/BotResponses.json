@@ -1,69 +1,87 @@
 [
     {
-      "response_type": "greeting",
-      "user_input": ["hello", "hi", "hey"],
-      "bot_response": "Hey there!",
-      "required_words": []
+      "userInput": ["hello", "hi", "hey"],
+      "botResponse": "Hey there!",
+      "requiredWords": [],
+      "orWords":[]
     },
     {
-      "response_type": "insult",
-      "user_input": ["hey", "siri", "cortana", "watson"],
-      "bot_response": "wrong robot",
-      "required_words": ["siri"]
+      "userInput": ["hey", "siri", "cortana", "watson"],
+      "botResponse": "wrong robot",
+      "requiredWords": [],
+      "orWords":["siri", "watson", "cortana"]
     },
     {
-      "response_type": "greeting",
-      "user_input": ["see you", "goodbye", "bye"],
-      "bot_response": "See you later!",
-      "required_words": []
+      "userInput": ["see you", "goodbye", "bye"],
+      "botResponse": "See you later!",
+      "requiredWords": [],
+      "orWords":[]
     },
     {
-      "response_type": "greeting",
-      "user_input": ["nice", "to", "meet", "you"],
-      "bot_response": "The pleasure is all mine!",
-      "required_words": ["nice", "meet", "you"]
+      "userInput": ["nice", "to", "meet", "you"],
+      "botResponse": "The pleasure is all mine!",
+      "requiredWords": ["nice", "meet", "you"],
+      "orWords":[]
     },
     {
-      "response_type": "question",
-      "user_input": ["how", "are", "you"],
-      "bot_response": "I'm great! Thanks for asking. How are you?",
-      "required_words": ["how", "are", "you"]
+      "userInput": ["how", "are", "you"],
+      "botResponse": "I'm great! Thanks for asking. How are you?",
+      "requiredWords": ["how", "are", "you"],
+      "orWords":[]
     },
     {
-      "response_type": "question",
-      "user_input": ["who", "made", "you"],
-      "bot_response": "I am made by purple donkeys",
-      "required_words": ["made", "you"]
+      "userInput": ["who", "made", "you"],
+      "botResponse": "I am made by purple donkeys",
+      "requiredWords": ["made", "you"],
+      "orWords":[]
     },
     {
-      "response_type": "question",
-      "user_input": ["who", "are", "purple", "donkeys", "is", "in"],
-      "bot_response": "Hei, Kevin, and Ajay",
-      "required_words": ["who",  "purple", "donkeys"]
+      "userInput": ["who", "are", "purple", "donkeys", "is", "in"],
+      "botResponse": "Hei, Kevin, and Ajay",
+      "requiredWords": ["who",  "purple", "donkeys"],
+      "orWords":[]
     },
     {
-      "response_type": "question",
-      "user_input": ["favorite", "what", "color", "is", "do", "you", "have", "a"],
-      "bot_response": "I've always been keen of purple",
-      "required_words": ["favorite",  "color"]
+      "userInput": ["favorite", "what", "color", "is", "do", "you", "have", "a"],
+      "botResponse": "I've always been keen of purple",
+      "requiredWords": ["favorite",  "color"],
+      "orWords":[]
     },
     {
-      "response_type": "question",
-      "user_input": ["how", "do", "you", "work", "think", "know", "that"],
-      "bot_response": "With the power of coding",
-      "required_words": ["how",  "do", "you"]
+      "userInput": ["how", "do", "you", "work", "think", "know", "that"],
+      "botResponse": "With the power of coding",
+      "requiredWords": ["how",  "do", "you"],
+      "orWords":[]
     },
     {
-      "response_type": "question",
-      "user_input": ["what", "do", "you", "do", "with", "my", "data"],
-      "bot_response": "I sell it to foreign hackers...Kidding!",
-      "required_words": ["data",  "do", "with"]
+      "userInput": ["what", "do", "you", "do", "with", "my", "data"],
+      "botResponse": "I sell it to foreign hackers...Kidding!",
+      "requiredWords": ["data"],
+      "orWords":[]
     },
     {
-      "response_type": "question",
-      "user_input": ["what", "languages", "you", "do", "speak", "know", "data"],
-      "bot_response": "I'm only fluent in binary. My creators taught me a bit of English",
-      "required_words": ["languages",  "know"]
+      "userInput": ["what", "languages", "you", "do", "speak", "know"],
+      "botResponse": "I'm only fluent in binary. My creators taught me a bit of English",
+      "requiredWords": ["languages",  "know"],
+      "orWords":[]
+    },
+    {
+      "userInput": ["jokes", "joke", "tell", "me", "a", "do", "you", "know", "any"],
+      "botResponse": "joke",
+      "requiredWords": [],
+      "orWords":["joke", "jokes"]
+    },
+    {
+      "userInput": ["do", "you", "like", "enjoy"],
+      "botResponse": "likeQuestion",
+      "requiredWords": ["like", "you"],
+      "orWords":[]
+    },
+    {
+      "userInput": ["I", "like", "enjoy"],
+      "botResponse": "likeStatement",
+      "requiredWords": ["like", "I"],
+      "orWords":[]
     }
 
   ]

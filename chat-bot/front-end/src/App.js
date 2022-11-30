@@ -10,7 +10,10 @@ function App() {
   //const [loggedIn, setLoggedIn] = useState(true);
   const [loginStatus, setLoginStatus] = useState("");  //false means not logged in true means logged in
   console.log("login status: " + loginStatus);
-  let render = <Login setLoginStatus = {setLoginStatus}/>
+  let render = <Login setLoginStatus = {setLoginStatus}/>;
+  if (loginStatus == "login") {
+    render = <Login setLoginStatus = {setLoginStatus}/>
+  }
   if (loginStatus == "SignUp") {
     render = <SignUp setLoginStatus = {setLoginStatus}p/>
   }

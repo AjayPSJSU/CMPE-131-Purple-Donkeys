@@ -25,7 +25,7 @@ function SignUp(props) {
                 <input type="password" placeholder="Password" onChange={(event)=> setPassword(event.target.value)} required/>
 
                 <div className="guest-btn" onClick={signUp}>Sign Up</div>
-                <div className="guest-btn" onClick={guest}>Cancel</div>
+                <div className="guest-btn" onClick={props.setLoginStatus("login")}>Cancel</div>
             </div>
         </div>
     );

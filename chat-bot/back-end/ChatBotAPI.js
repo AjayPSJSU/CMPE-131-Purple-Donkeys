@@ -71,12 +71,20 @@ app.post('/api/getMessageHistory', urlencodedParser, async(req, res) => {
     res.json(messages);
 });
 
+app.post('/api/getPersonality', urlencodedParser, async(req, res) => {
+    const personality = {
+        likes: ["cheess", "chess", "cars"],
+        dislikes: ["carrots", "capitalism"]
+    }
+    res.json(personality);
+});
+
 
 app.post('/api/getBotResponse', urlencodedParser,(req, res) => {
     const childPython = spawn('python3', ['ChatBot.py', req.query.message]);
     let response = "";
     childPython.stdout.on('data', (data) => {
-        console.log(`stdout: ${data}`);
+        //console.log(`stdout: ${data}`);
         response = `${data}`;
         //console.log(response);
     });
@@ -91,15 +99,15 @@ app.post('/api/getBotResponse', urlencodedParser,(req, res) => {
             human: req.query.message,
             bot: response
         }
-        console.log(interaction);
-        console.log("uid:" + req.query.uid);
+        //console.log(interaction);
+        //console.log("uid:" + req.query.uid);
         let messageHistory = await client.db("ChatBot").collection("UserMessageHistory").updateOne(
                                                                                                    {"_id": new ObjectID(req.query.uid)}, 
                                                                                                    {$push: {messages: interaction}}
                                                                                                    );
-        console.log(messageHistory.acknowledged);
+        //console.log(messageHistory.acknowledged);
         res.json(response);
-        console.log(`exit with code: ${code}`);
+        //console.log(`exit with code: ${code}`);
     });
     
     

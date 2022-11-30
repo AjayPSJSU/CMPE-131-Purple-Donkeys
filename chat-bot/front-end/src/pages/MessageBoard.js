@@ -16,7 +16,11 @@ function MessageBoard(props) {
     const [messageHistoryAmount, setMessageHistoryAmount] = useState(0);
     const [messageHistory, setMessageHistory] = useState([]);
     const [dummy, setDummy] = useState(0);
+    const [likes, setLikes] = useState("Likes: ");
+    const [dislikes, setDislikes] = useState("Dislikes: ");
+    const [showingPersonality, setShowingPersonality] = useState(false);
     
+
     
    // const input = useRef();
 
@@ -129,6 +133,19 @@ function MessageBoard(props) {
     }
     */
 
+    async function getPersonality() {
+        setShowingPersonality(true);
+        const x = await axios.post('http://localhost:5000/api/getPersonality', {}, {params: {uid: props.uid}});
+        var temp = "Likes: ";
+        x.data.likes.forEach((like) => temp+=like + ", ");
+        temp = temp.substring(0, temp.length-2);
+        await setLikes(temp);
+        temp = "Likes: ";
+        x.data.dislikes.forEach((dislike) => temp+=dislike + ", ");
+        temp = temp.substring(0, temp.length-2);
+        await setDislikes(temp);
+    }
+
    
 
     return (
@@ -189,6 +206,24 @@ function MessageBoard(props) {
                                         <button onClick={async () => await more()}> more </button>
                                     </div>
                                 </div>   
+
+                                <div>
+                                    <p>Personality</p>
+                                    <button onClick={async () => await getPersonality()}> show </button>
+                                    <button onClick={async () => await setShowingPersonality(false)}> hide </button>
+                                    
+                                    {
+                                        showingPersonality ? (
+                                            <div>
+                                                <p>{likes}</p>
+                                                <p>{dislikes}</p>
+                                            </div>
+                                        ) : (
+                                            <p></p>
+                                        )
+                                    }
+                                    
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -34,7 +34,6 @@ const Login = (props) => {
     }
 
     function signUp() {
-        
        props.setLoginStatus("SignUp");
     }
 
