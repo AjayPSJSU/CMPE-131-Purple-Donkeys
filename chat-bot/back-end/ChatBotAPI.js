@@ -44,6 +44,7 @@ app.use(cors({
 
 /*
 this is the actual version that works with mongodb
+*/
 app.post('/api/getMessageHistory', urlencodedParser, async(req, res) => {
     let messageHistory = await client.db("ChatBot").collection("UserMessageHistory").findOne({"_id": new ObjectID(req.query.uid)});
     console.log(req.query.amount);
@@ -59,9 +60,10 @@ app.post('/api/getMessageHistory', urlencodedParser, async(req, res) => {
     console.log(messages);
     res.json(messages);
 });
-*/
+
 
 //this is the version for css testing without mongodb
+/*
 app.post('/api/getMessageHistory', urlencodedParser, async(req, res) => {
     messages = [];
     for (var i = 0; i < 5; i++) {
@@ -70,6 +72,7 @@ app.post('/api/getMessageHistory', urlencodedParser, async(req, res) => {
     console.log(messages);
     res.json(messages);
 });
+*/
 
 app.post('/api/getPersonality', urlencodedParser, async(req, res) => {
     const personality = {

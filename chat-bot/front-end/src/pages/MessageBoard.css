@@ -83,14 +83,25 @@
   margin: 150px 0 0;
 }
 
+.wrapper .content .lowerleft {
+  margin-right:10px;
+  
+}
+
 .wrapper .content .bottom .btm{
   display: flex;
   align-items: center;
 }
 
+.wrapper .content .bottom .btm2{
+  display: flex;
+  align-items: center;
+  margin-top:-7%;
+}
+
 /*text box attribute*/
 .wrapper .content .bottom .btm .input input{
-  width: 400px;
+  width: 920px;
   height: 50px;
   padding-left: 20px;
   outline: none;
@@ -191,23 +202,47 @@
 }
 
 
+
 /* "Send" text inside the button*/
 .wrapper .content .bottom .btm .btn button i{
   margin-left: 5px;
 }
 
 .title{
-  margin-left: -100%;
+  margin-left: -190%;
   align-content: center;
 }
 
 .title2{
-  margin-left: 50%;
+  margin-left: -390%;
   align-content: center;
+  
 }
 
 .likes{
-  position: fixed;
-  margin-left: 470px;
-  align-content: center;
+  margin-left: 2%;
+  margin-bottom:100px;
+  align-content: right;
+  display: block;
+  width: 200px;
 }
+
+.messageHistory1{
+  margin-top:-8%;
+  width:560px;
+  margin-left: 48%;
+}
+
+.messageHistory2{
+  margin-top:-11%;
+  width:560px;
+  margin-left: 48%;
+}
+
+.messageHistoryTitle{
+  
+  margin-left: 0px;
+  align-content:center;
+}
+
+
