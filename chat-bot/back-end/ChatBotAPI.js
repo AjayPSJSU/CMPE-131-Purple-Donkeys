@@ -47,7 +47,7 @@ this is the actual version that works with mongodb
 */
 app.post('/api/getMessageHistory', urlencodedParser, async(req, res) => {
     let messageHistory = await client.db("ChatBot").collection("UserMessageHistory").findOne({"_id": new ObjectID(req.query.uid)});
-    console.log(req.query.amount);
+    console.log(messageHistory);
     let messages = messageHistory.messages;
     let temp = [];
     for (var i = (5*req.query.amount); i < (5*req.query.amount)+5; i++) {

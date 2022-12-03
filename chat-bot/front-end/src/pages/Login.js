@@ -3,6 +3,7 @@ import { Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 import React, {useState} from 'react';
 import "./login.css"
 import axios from 'axios';
+import { Link, Navigate } from 'react-router-dom';
 
 
 // class Login extends Component {
@@ -20,6 +21,7 @@ const Login = (props) => {
     const [guestStyle, showGuestPopup] = useState("hide"); /* for testing purposes, you would replace this with a redirct to the chatbot  */
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState('');
+    const [loggedIn, setLoggedIn] = useState(false);
     
     
     const popup = () => {
@@ -33,20 +35,17 @@ const Login = (props) => {
         setTimeout(() => showGuestPopup("hide"), 3000);
     }
 
-    function signUp() {
-       props.setLoginStatus("SignUp");
-    }
-
     async function login() {
-        console.log("login");
         const body = {
             "email": email,
             "password": password
         }
-        console.log(body);
         const x = await axios.post('http://localhost:5000/api/handleLogin/', {}, {params: {email, password}});
         console.log(x.data);
-        props.setLoginStatus(x.data); 
+        if (x.data) {
+            await setLoggedIn(true);
+        }
+        props.setUid(x.data); 
     }
 
 
@@ -60,7 +59,10 @@ const Login = (props) => {
     const changePassword = (event) => {
         console.log(event.target.value);
         setPassword(event.target.value);
+
     }
+
+    
 
     return (
         <div className="background">
@@ -83,10 +85,15 @@ const Login = (props) => {
             <input type="password" placeholder="Password" onChange={(event)=> setPassword(event.target.value)} required/>
             
             <div className="login-btn" onClick={login}>Login</div>
-            <div className="guest-btn" onClick={guest}>Continue As Guest </div>
-            <div className="guest-btn" onClick={signUp}>Sign Up</div>
-            
-            
+            <div className="guest-btn" ><Link to="/messageboard">Continue as Guest</Link> </div>
+            <div className="guest-btn" ><Link to="/signup">Register</Link></div>
+            {
+                loggedIn ? (
+                    <Navigate to="/messageboard"/>
+                ) : (
+                    <p></p>
+                )
+            }
 
             
     

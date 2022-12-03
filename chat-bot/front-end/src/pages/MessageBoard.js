@@ -4,7 +4,7 @@ import "./MessageBoard.css";
 import image from "./img/bot_image.jpg";
 import { useState, useRef } from 'react';
 import axios from 'axios';
-import MessageHistory from '../modules/MessageHistory';
+import { Link } from 'react-router-dom';
 
 
 
@@ -188,7 +188,7 @@ function MessageBoard(props) {
                             </div>
                             <div className="btn2">
                                 <button onClick={getBotResponse}>
-                                    Log Out</button>
+                                    <Link to="/login">Log Out</Link></button>
                             </div>
 
                             <div className="bottom">
