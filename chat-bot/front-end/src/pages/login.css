@@ -63,6 +63,11 @@ input:focus {
 	cursor: pointer;
 }
 
+.link {
+	color: white;
+	text-decoration: none;
+}
+
 .guest-btn {
 	width: 40%;
 	height: 3em;
