@@ -188,7 +188,7 @@ function MessageBoard(props) {
                             </div>
                             <div className="btn2">
                                 <button onClick={getBotResponse}>
-                                    <Link to="/login">Log Out</Link></button>
+                                    <Link className="link" to="/login">Log Out</Link></button>
                             </div>
 
                             <div className="bottom">
