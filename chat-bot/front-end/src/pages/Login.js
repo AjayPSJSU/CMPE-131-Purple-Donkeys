@@ -28,12 +28,13 @@ const Login = (props) => {
         showPopup("login-popup");
         setTimeout(() => showPopup("hide"), 3000);
     }
-
+    /*
     const guest = () => {
         props.setLoginStatus("guest"); 
         showGuestPopup("guest-popup");
         setTimeout(() => showGuestPopup("hide"), 3000);
     }
+    */
 
     async function login() {
         const body = {
@@ -46,6 +47,12 @@ const Login = (props) => {
             await setLoggedIn(true);
         }
         props.setUid(x.data); 
+    }
+
+    async function guest() {
+        const x = await axios.post('http://localhost:5000/api/makeGuest/', {}, {});
+        console.log(x.data);
+        props.setUid(x.data);
     }
 
 
@@ -84,9 +91,15 @@ const Login = (props) => {
             <label htmlFor="password">Password:</label>
             <input type="password" placeholder="Password" onChange={(event)=> setPassword(event.target.value)} required/>
             
+<<<<<<< Updated upstream
             <div className="login-btn" onClick={login}>Login</div>
             <div className="guest-btn" ><Link className="link" to="/messageboard">Continue as Guest</Link> </div>
             <div className="guest-btn"><Link className="link" to="/signup">Register</Link></div>
+=======
+            <div className="login-btn" onClick={async () => await login()}>Login</div>
+            <div className="guest-btn" onClick={async () => await guest()}><Link to="/messageboard">Continue as Guest</Link> </div>
+            <div className="guest-btn" ><Link to="/signup">Register</Link></div>
+>>>>>>> Stashed changes
             {
                 loggedIn ? (
                     <Navigate to="/messageboard"/>

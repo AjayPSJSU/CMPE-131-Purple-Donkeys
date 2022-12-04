@@ -83,7 +83,14 @@ function MessageBoard(props) {
         setBotMessage("...");
         setHumanMessageDisplay(humanMessage);
         const x = await axios.post('http://localhost:5000/api/getBotResponse', {}, { params: { message: humanMessage, uid: props.uid } });
-        setBotMessage(x.data);
+        if (x.data.like) {
+            //call get likes/dislikes
+        }
+        if (x.data.response.includes("like") && showingPersonality) {
+            //const personality = await axios.post('http://localhost:5000/api/getBotResponse', {}, { params: {uid: props.uid } });
+            await getPersonality();
+        }
+        setBotMessage(x.data.response);
     }
 
     async function getMessageHistory() {
