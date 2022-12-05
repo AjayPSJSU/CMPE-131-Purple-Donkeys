@@ -70,6 +70,7 @@ app.post('/api/makeGuest', urlencodedParser, async (req, res) => {
         dislikes: []
     }
     const newMessageHistory = await client.db("ChatBot").collection("UserMessageHistory").insertOne(newDoc);
+    console.log(newMessageHistory.insertedId);
     res.json(newMessageHistory.insertedId);
 });
 

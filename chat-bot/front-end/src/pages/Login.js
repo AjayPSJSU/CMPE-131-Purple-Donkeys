@@ -93,8 +93,8 @@ const Login = (props) => {
             
 
             <div className="login-btn" onClick={login}>Login</div>
-            <div className="guest-btn" ><Link className="link" to="/messageboard">Continue as Guest</Link> </div>
-            <div className="guest-btn"><Link className="link" to="/signup">Register</Link></div>
+            <div className="guest-btn" onClick={guest}><Link className="link" to="/messageboard">Continue as Guest</Link> </div>
+            <div className="guest-btn" ><Link className="link" to="/signup">Register</Link></div>
 
             {
                 loggedIn ? (
