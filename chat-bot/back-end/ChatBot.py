@@ -49,6 +49,9 @@ def like(input, isQuestion):
             temp = "Hmm, I don't like "
         else:
             temp = "I also like "
+    
+    out = re.sub('[^A-Za-z0-9\s]+', '',out) #filter out special characters
+
 
     out = temp + out
     return out
