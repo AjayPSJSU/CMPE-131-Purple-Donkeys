@@ -82,6 +82,13 @@
       "botResponse": "likeStatement",
       "requiredWords": ["like", "I"],
       "orWords":[]
+    },
+
+    {
+      "userInput": ["what", "is", "your", "name"],
+      "botResponse": "My name is Mr. Purple Donkey!",
+      "requiredWords": ["your", "name"],
+      "orWords":[]
     }
 
   ]
