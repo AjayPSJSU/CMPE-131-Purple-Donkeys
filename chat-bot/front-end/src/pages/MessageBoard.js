@@ -94,8 +94,10 @@ function MessageBoard(props) {
     }
 
     async function getMessageHistory() {
+        await setMessageHistoryAmount(messageHistoryAmount + 1);
         const x = await axios.post('http://localhost:5000/api/getMessageHistory', {}, { params: { amount: messageHistoryAmount, uid: props.uid } });
         let temp = messageHistory;
+        
         for (var i = 0; i < x.data.length; i++) {
             temp.push(x.data[i]);
         }
@@ -109,6 +111,7 @@ function MessageBoard(props) {
             temp.pop();
         }
         await setMessageHistory(temp);
+        await setMessageHistoryAmount(messageHistoryAmount-1);
     }
 
     async function handleKeyDown(e) {
@@ -119,18 +122,17 @@ function MessageBoard(props) {
     }
 
     async function less() {
-        let temp = messageHistoryAmount - 1;
-        await setMessageHistoryAmount(temp);
-        await loseMessages();
-        temp = dummy + 1;
+        if (messageHistory.length > 0) {
+            await loseMessages();
+        }
+        let temp = dummy + 1;
         setDummy(temp);
     }
 
     async function more() {
-        let temp = messageHistoryAmount + 1
-        await setMessageHistoryAmount(temp);
+        
         await getMessageHistory();
-        temp = dummy - 1;
+        let temp = dummy - 1;
         setDummy(temp);
     }
     /*
