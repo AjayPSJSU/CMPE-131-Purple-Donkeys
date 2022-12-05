@@ -91,15 +91,11 @@ const Login = (props) => {
             <label htmlFor="password">Password:</label>
             <input type="password" placeholder="Password" onChange={(event)=> setPassword(event.target.value)} required/>
             
-<<<<<<< Updated upstream
+
             <div className="login-btn" onClick={login}>Login</div>
             <div className="guest-btn" ><Link className="link" to="/messageboard">Continue as Guest</Link> </div>
             <div className="guest-btn"><Link className="link" to="/signup">Register</Link></div>
-=======
-            <div className="login-btn" onClick={async () => await login()}>Login</div>
-            <div className="guest-btn" onClick={async () => await guest()}><Link to="/messageboard">Continue as Guest</Link> </div>
-            <div className="guest-btn" ><Link to="/signup">Register</Link></div>
->>>>>>> Stashed changes
+
             {
                 loggedIn ? (
                     <Navigate to="/messageboard"/>
