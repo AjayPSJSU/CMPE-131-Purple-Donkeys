@@ -10,7 +10,10 @@ def randomResponse():
         "Oh! It appears you wrote something I don't understand yet",
         "Do you mind trying to rephrase that?",
         "I'm terribly sorry, I didn't quite catch that.",
-        "I can't answer that yet, please try asking something else."
+        "I can't answer that yet, please try asking something else.",
+        "My master didn't implement that feature yet, Sorry.",
+        "I don't understand what you just said",
+        "I'm going to need more information about that"
     ]
 
     randomResponseIndex = random.randrange(len(randomResponses))
@@ -49,10 +52,7 @@ def like(input, isQuestion):
             temp = "Hmm, I don't like "
         else:
             temp = "I also like "
-    
     out = re.sub('[^A-Za-z0-9\s]+', '',out) #filter out special characters
-
-
     out = temp + out
     return out
             

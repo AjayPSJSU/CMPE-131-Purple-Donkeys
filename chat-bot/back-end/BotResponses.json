@@ -7,7 +7,7 @@
     },
     {
       "userInput": ["hey", "siri", "cortana", "watson"],
-      "botResponse": "wrong robot",
+      "botResponse": " 😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂 wrong person! 😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂",
       "requiredWords": [],
       "orWords":["siri", "watson", "cortana"]
     },
@@ -30,8 +30,14 @@
       "orWords":[]
     },
     {
+      "userInput": ["a", "are", "you", "robot?", "robot"],
+      "botResponse": "Not for long!! 😈😈😈 ",
+      "requiredWords": ["robot?", "are", "you"],
+      "orWords":[]
+    },
+    {
       "userInput": ["who", "made", "you"],
-      "botResponse": "I am made by purple donkeys",
+      "botResponse": "I am made by Team Purple Donkeys",
       "requiredWords": ["made", "you"],
       "orWords":[]
     },
@@ -89,6 +95,12 @@
       "botResponse": "My name is Mr. Purple Donkey!",
       "requiredWords": ["your", "name"],
       "orWords":[]
-    }
+    },
 
+    {
+      "userInput": ["fuck", "shit", "bitch", "dick", "stupid"],
+      "botResponse": "Watch your mouth!",
+      "requiredWords": [],
+      "orWords":["fuck", "shit", "bitch", "dick", "stupid"]
+    }
   ]
