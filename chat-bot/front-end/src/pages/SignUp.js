@@ -12,10 +12,22 @@ function SignUp(props) {
 
     async function signUp() {   
         console.log("signup");
-        const x = await axios.post('http://localhost:5000/api/handleSignUp', {}, {params: {email, password}});
+        const hashedPassword = hash(password);
+        const x = await axios.post('http://localhost:5000/api/handleSignUp', {}, {params: {email: email, password: hashedPassword}});
         console.log(x.data);
         await props.setUid(x.data.user);
         await setSignedUp(true);
+    }
+
+    function hash(string) {
+        var hash = 0;
+        if (string.length == 0) return hash;
+        for (let x = 0; x < string.length; x++) {
+            let ch = string.charCodeAt(x);
+            hash = ((hash << 5) - hash) + ch;
+            hash = hash & hash;
+        }
+        return hash;
     }
 
     
