@@ -171,11 +171,6 @@ app.post('/api/getBotResponse', urlencodedParser, (req, res) => {
     return;
 });
 
-app.get('/api/getMessageHistory', urlencodedParser, async (req, res) => {
-    let messageHistory = await client.db("ChatBot").collection(UserMessageHistory).findOne({ "_id": req.uid });
-    res.json(messageHistory);
-});
-
 
 app.post(`/api/handleLogin`, urlencodedParser, async (req, res) => {
     console.log(req.query);
@@ -187,7 +182,7 @@ app.post(`/api/handleLogin`, urlencodedParser, async (req, res) => {
         return;
     }
     const date = new Date();
-    if (((user.createdAt - date)/(1000*60*60*24)) > 31) {
+    if (((date - user.createdAt)/(1000*60*60*24)) > 31) {
         console.log("account not renewed");
         res.json("");
         return;
