@@ -4,12 +4,12 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import MessageBoard from './pages/MessageBoard';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 //figure out how to change loggedIn state using login component
 function App() {
   const [uid, setUid] = useState("");
-  console.log("uid:" + uid);
+ 
 
   return (
     <div className="App">
