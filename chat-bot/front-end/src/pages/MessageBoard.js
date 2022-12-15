@@ -158,7 +158,7 @@ function MessageBoard(props) {
 
 
     return (
-        <div className="messageBoard" onLoad={checkStatus}>
+        <div data-testid="msg" className="messageBoard" onLoad={checkStatus}>
             <div className="wrapper">
                 <div className="content">
                     <div className="header">

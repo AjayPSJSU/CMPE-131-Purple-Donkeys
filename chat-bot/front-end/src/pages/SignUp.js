@@ -21,8 +21,8 @@ function SignUp(props) {
     
 
     return (
-        <div className="background">
-            <div className="cover">
+        <div data-testid="bg" className="background">
+            <div data-testid="cvr" className="cover">
                 <h1>Register</h1>
                 
                 <input type="text" placeholder="Email" onChange={(event)=>setEmail(event.target.value)} required/>

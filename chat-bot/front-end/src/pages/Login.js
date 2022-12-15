@@ -72,8 +72,8 @@ const Login = (props) => {
     
 
     return (
-        <div className="background">
-        <div className="cover">
+        <div data-testid="bg" className="background">
+        <div data-testid="cvr" className="cover">
             <h1>Login</h1>
 
 
