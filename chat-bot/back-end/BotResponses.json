@@ -86,7 +86,7 @@
     {
       "userInput": ["I", "like", "enjoy"],
       "botResponse": "likeStatement",
-      "requiredWords": ["like", "I"],
+      "requiredWords": ["i", "like"],
       "orWords":[]
     },
 

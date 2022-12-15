@@ -96,14 +96,11 @@ app.post('/api/getPersonality', urlencodedParser, async (req, res) => {
 });
 */
 app.post('/api/getPersonality', urlencodedParser, async (req, res) => {
-    let x = await client.db("ChatBot").collection("UserMessageHistory").findOne({"_id": new ObjectID(req.query.uid)});
-    console.log(req.query.uid)
-    console.log(x);
+    let botData = await client.db("ChatBot").collection("UserMessageHistory").findOne({"_id": new ObjectID(req.query.uid)});
     const personality = {
-        likes: x.likes,
-        dislikes: x.dislikes
+        likes: botData.likes,
+        dislikes: botData.dislikes
     }
-    console.log(personality);
     res.json(personality);
 });
 
@@ -112,9 +109,7 @@ app.post('/api/getBotResponse', urlencodedParser, (req, res) => {
     const childPython = spawn('python3', ['ChatBot.py', req.query.message]);
     let response = "";
     childPython.stdout.on('data', (data) => {
-        //console.log(`stdout: ${data}`);
         response = `${data}`;
-        //console.log(response);
     });
 
     childPython.stderr.on('data', (data) => {
@@ -122,13 +117,10 @@ app.post('/api/getBotResponse', urlencodedParser, (req, res) => {
     });
 
     childPython.on('close', async (code) => {
-        //console.log("response is: " + response);
         const interaction = {
             human: req.query.message,
             bot: response
         }
-        //console.log(interaction);
-        //console.log("uid:" + req.query.uid);
         if (req.query.uid) {
 
             let messageHistory = await client.db("ChatBot").collection("UserMessageHistory").updateOne(
@@ -179,11 +171,6 @@ app.post('/api/getBotResponse', urlencodedParser, (req, res) => {
     return;
 });
 
-app.get('/api/getMessageHistory', urlencodedParser, async (req, res) => {
-    let messageHistory = await client.db("ChatBot").collection(UserMessageHistory).findOne({ "_id": req.uid });
-    res.json(messageHistory);
-});
-
 
 app.post(`/api/handleLogin`, urlencodedParser, async (req, res) => {
     console.log(req.query);
@@ -194,7 +181,13 @@ app.post(`/api/handleLogin`, urlencodedParser, async (req, res) => {
         res.json("");
         return;
     }
-    if (hash(req.query.password) != user.password) {
+    const date = new Date();
+    if (((date - user.createdAt)/(1000*60*60*24)) > 31) {
+        console.log("account not renewed");
+        res.json("");
+        return;
+    }
+    if (req.query.password != user.password) {
         res.json("");
         return;
     }
@@ -203,11 +196,11 @@ app.post(`/api/handleLogin`, urlencodedParser, async (req, res) => {
 });
 
 app.post(`/api/handleSignUp`, urlencodedParser, async (req, res) => {
-    const password = hash(req.query.password);
-    console.log("password: " + password);
+    const password = req.query.password;
     const newUser = {
         email: req.query.email,
-        password: password
+        password: password,
+        createdAt: new Date()
     }
     const newId = await client.db("ChatBot").collection("users").insertOne(newUser);
     console.log("success making user with userID: " + newId.insertedId);
@@ -231,13 +224,3 @@ const port = 5000;
 app.listen(port, () => console.log(`server started on port ${port}`));
 
 // hash function 
-function hash(string) {
-    var hash = 0;
-    if (string.length == 0) return hash;
-    for (x = 0; x < string.length; x++) {
-        ch = string.charCodeAt(x);
-        hash = ((hash << 5) - hash) + ch;
-        hash = hash & hash;
-    }
-    return hash;
-}

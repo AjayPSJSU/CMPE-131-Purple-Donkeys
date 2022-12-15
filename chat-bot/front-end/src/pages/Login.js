@@ -22,6 +22,7 @@ const Login = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState('');
     const [loggedIn, setLoggedIn] = useState(false);
+    const [loginError, setLoginError] = useState(false);
     
     
     const popup = () => {
@@ -41,10 +42,14 @@ const Login = (props) => {
             "email": email,
             "password": password
         }
-        const x = await axios.post('http://localhost:5000/api/handleLogin/', {}, {params: {email, password}});
+        let hashedPassword = hash(password);
+        const x = await axios.post('http://localhost:5000/api/handleLogin/', {}, {params: {email: email, password: hashedPassword}});
         console.log(x.data);
         if (x.data) {
             await setLoggedIn(true);
+        }
+        else {
+            await setLoginError(true);
         }
         props.setUid(x.data); 
     }
@@ -69,6 +74,17 @@ const Login = (props) => {
 
     }
 
+    function hash(string) {
+        var hash = 0;
+        if (string.length == 0) return hash;
+        for (let x = 0; x < string.length; x++) {
+            let ch = string.charCodeAt(x);
+            hash = ((hash << 5) - hash) + ch;
+            hash = hash & hash;
+        }
+        return hash;
+    }
+
     
 
     return (
@@ -76,11 +92,15 @@ const Login = (props) => {
         <div data-testid="cvr" className="cover">
             <h1>Login</h1>
 
-
-            <div className={popupStyle}>
-            <h3>Login Failed: Username or password incorrect</h3>
-            </div>
-
+            {
+                loginError ? (
+                    <div style={{color: "red"}}>
+                    <h3>Login Failed</h3>
+                    </div>  
+                ) : (
+                    <></>
+                )
+            }   
             <div className={guestStyle}>
             <h3>You are a Guest! Redirecting to main page...</h3>
             </div>
