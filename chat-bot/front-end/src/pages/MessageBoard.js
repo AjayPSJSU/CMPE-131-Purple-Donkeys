@@ -19,10 +19,8 @@ function MessageBoard(props) {
     const [likes, setLikes] = useState("Likes: ");
     const [dislikes, setDislikes] = useState("Dislikes: ");
     const [showingPersonality, setShowingPersonality] = useState(false);
+    //const input = useRef();
 
-
-
-    // const input = useRef();
 
     const date = new Date();
     const hours = date.getHours();
@@ -156,7 +154,6 @@ function MessageBoard(props) {
     }
 
 
-
     return (
         <div data-testid="msg" className="messageBoard" onLoad={checkStatus}>
             <div className="wrapper">
@@ -196,7 +193,7 @@ function MessageBoard(props) {
                                 </button>
                             </div>
                             <div className="btn2">
-                                <button onClick={getBotResponse}>
+                                <button>
                                     <Link className="link" to="/login">Log Out</Link></button>
                             </div>
 
@@ -248,7 +245,6 @@ function MessageBoard(props) {
                 </div>
                 <div className={showingPersonality ? "messageHistory2": "messageHistory1"}>
                     <ol>
-                        {console.log(messageHistory)}
                         {messageHistory.map((message, index) => (<li key={index}>{"You: " + message.human + "    Bot: " + message.bot}</li>))}
                     </ol>
                 </div>

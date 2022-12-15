@@ -64,15 +64,16 @@ def like(input, isQuestion):
 
 
 # Store JSON data
+
 responses = ""
 
 with open("BotResponses.json") as botResponses:
     #print("loaded bot responses successfully")
     responses = json.load(botResponses)   #just responses
 
-
 def getResponse(input):  #just input
     
+
     if (input == ""):
         return "Please type something so we can chat :("
     

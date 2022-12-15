@@ -19,23 +19,7 @@ const app = express();
 client.connect();
 console.log("connection made to mongo");
 client.db("ChatBot").collection("UserMessageHistory").createIndex({ "createdAt": 1 }, { expireAfterSeconds: 86400 });
-/*
-need user details
-Database will have 2 collections
--Users will have documentID, that will be random
--Messages will have DocumentID that will be the users DocumentID in the Users Collection
--Messages will store the last say 100 messages given to and from the user
 
-
-
-
-for the bot
-certain keywords, such as "or", will dictate a response such as "hmm idk"
-"favorite" - depending on what is after, like food or sport, dictate certain outcomes
-
-otherwise, run it through the fuzzy search, set the search key as the type of message it is, and then return the value
-hashmap<type of message, response>
-*/
 
 app.use(cors({
     origin: true,
