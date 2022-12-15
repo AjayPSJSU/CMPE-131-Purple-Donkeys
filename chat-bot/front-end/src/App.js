@@ -9,7 +9,6 @@ import React, { useState } from 'react';
 //figure out how to change loggedIn state using login component
 function App() {
   const [uid, setUid] = useState("");
-  console.log("uid:" + uid);
  
 
   return (

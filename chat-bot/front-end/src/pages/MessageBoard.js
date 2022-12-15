@@ -248,7 +248,6 @@ function MessageBoard(props) {
                 </div>
                 <div className={showingPersonality ? "messageHistory2": "messageHistory1"}>
                     <ol>
-                        {console.log(messageHistory)}
                         {messageHistory.map((message, index) => (<li key={index}>{"You: " + message.human + "    Bot: " + message.bot}</li>))}
                     </ol>
                 </div>

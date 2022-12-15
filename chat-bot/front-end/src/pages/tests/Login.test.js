@@ -2,6 +2,7 @@ import { render, screen, cleanup } from '@testing-library/react'
 import Login from "../Login"
 import userEvent from '@testing-library/user-event'
 import {BrowserRouter as Router} from 'react-router-dom';
+import App from "../../App"
 import { Link, Navigate } from 'react-router-dom';
 
 
@@ -15,26 +16,21 @@ test('should render login background and cover components', () => {
     expect(loginElement).toBeTruthy()
   })
 
-  test('Upon clicking guest button, show guest message', async () =>  {
+  test('Upon clicking guest button, show message board from MessageBoard.js', async () =>  {
     render(
-        <Router>
-          <Login />
-        </Router>,
+          <App />
       );
       await userEvent.click(screen.getByText("Continue as Guest"))
-      expect(screen.getByText('You are a Guest! Redirecting to main page...')).toBeVisible()
+      expect(screen.getByText('Message History')).toBeVisible()
   })
 
-  /*                                                                            INTENDED TO FAIL 
-  test('Upon clicking guest button, show guest message', async () =>  {
+  test('Upon clicking log out, main page should be visible', async () =>  {
     render(
-        <Router>
-          <Login />
-        </Router>,
+          <App />
       );
-      await userEvent.click(screen.getByText("Continue as Guest"))
-      expect(screen.getByText('You are a Guest! Redirecting to main page...')).toBeVisible()
+      await userEvent.click(screen.getByText("Log Out"))
+      expect(screen.getByText('Continue as Guest')).toBeVisible()
   })
-  */
+
 
 

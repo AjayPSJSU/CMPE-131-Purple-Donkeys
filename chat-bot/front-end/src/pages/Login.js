@@ -56,7 +56,6 @@ const Login = (props) => {
 
     async function guest() {
         const x = await axios.post('http://localhost:5000/api/makeGuest/', {}, {});
-        console.log(x.data);
         props.setUid(x.data);
     }
 
@@ -112,7 +111,7 @@ const Login = (props) => {
             <input type="password" placeholder="Password" onChange={(event)=> setPassword(event.target.value)} required/>
             
 
-            <div className="login-btn" onClick={login}>Login</div>
+            <div className="login-btn" onClick={login}><button>Login</button></div>
             <div className="guest-btn" onClick={guest}><Link className="link" to="/messageboard">Continue as Guest</Link> </div>
             <div className="guest-btn" ><Link className="link" to="/signup">Register</Link></div>
 
